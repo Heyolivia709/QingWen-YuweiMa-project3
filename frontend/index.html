@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kitten Sudoku</title>
+    <link rel="icon" type="image/png" href="/kitten.png" />
+    <style>
+      /* Critical CSS to prevent navigation bar flash */
+      :root {
+        --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        --nav-h: 64px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      header.nav {
+        position: fixed;
+        height: 64px;
+        background: rgba(18,24,38,.88);
+        backdrop-filter: blur(8px);
+        z-index: 100;
+        top: 0;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid rgba(148,163,184,.18);
+        margin: 0;
+        padding: 0;
+      }
+      .nav .inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        height: 100%;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-family);
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        font-size: 1rem;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0;
+      }
+      .brand .title {
+        color: #fff;
+        font-family: var(--font-family);
+        font-size: 1rem;
+        font-weight: 800;
+        margin: 0;
+        padding: 0;
+      }
+      .brand .logo {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 6px 14px rgba(34,211,238,.3);
+        transform: rotate(10deg);
+        flex-shrink: 0;
+        background-color: rgba(34,211,238,.1);
+        background-image: url('/kitten.png');
+      }
+      .nav ul {
+        display: flex;
+        list-style: none;
+        gap: 6px;
+        margin: 0;
+        padding: 0;
+      }
+      .nav a.link {
+        font-family: var(--font-family);
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 12px;
+        color: #e5e7eb;
+        font-size: 0.95rem;
+        text-decoration: none;
+        margin: 0;
+      }
+      @media (max-width: 759px) {
+        header.nav {
+          top: auto;
+          bottom: 0;
+          height: auto;
+          border-top: 1px solid rgba(148,163,184,.18);
+          border-bottom: none;
+        }
+        body {
+          padding-bottom: 100px;
+        }
+      }
+      body {
+        margin: 0;
+        padding-bottom: 64px;
+        font-family: var(--font-family);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+

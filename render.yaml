@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: sudoku-project
+    env: node
+    buildCommand: cd frontend && npm install && npm run build && cd ../backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.x
+      - key: RENDER
+        value: "true"
+      # IMPORTANT: Set MONGODB_URI in Render Dashboard after deployment
+      # Go to your service -> Environment -> Add Environment Variable
+      # Key: MONGODB_URI
+      # Value: mongodb+srv://username:password@cluster.mongodb.net/sudoku-app
+    autoDeploy: false

@@ -1,0 +1,14 @@
+{
+  "name": "sudoku-root",
+  "version": "1.0.0",
+  "description": "Root for Fullstack Sudoku App",
+  "scripts": {
+    "install-all": "cd frontend && npm install && cd ../backend && npm install",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev": "echo 'Please run dev:frontend and dev:backend in separate terminals'"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
