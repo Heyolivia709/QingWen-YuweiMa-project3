@@ -39,13 +39,19 @@ router.post('/register', async (req, res) => {
       completedGames: [] 
     });
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    console.error('Register error:', error);
+    res.status(500).json({ error: 'Server error', details: error.message });
   }
 });
 
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
+    
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Username and password are required' });
+    }
+    
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(400).json({ error: 'Invalid credentials' });
@@ -62,7 +68,8 @@ router.post('/login', async (req, res) => {
       completedGames: user.completedGames || []
     });
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Server error', details: error.message });
   }
 });
 

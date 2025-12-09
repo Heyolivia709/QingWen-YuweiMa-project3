@@ -42,16 +42,19 @@ export function UserProvider({ children }) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password }),
         });
-        const data = await response.json();
-
+        
         if (!response.ok) {
-          return { success: false, message: data.error || 'Login failed' };
+          const errorData = await response.json().catch(() => ({ error: 'Login failed' }));
+          console.error('Login failed:', response.status, errorData);
+          return { success: false, message: errorData.error || 'Login failed' };
         }
-
+        
+        const data = await response.json();
         setUser({ username: data.username, avatar: data.avatar });
         return { success: true };
       } catch (error) {
-        return { success: false, message: 'Network error' };
+        console.error('Login network error:', error);
+        return { success: false, message: 'Network error: ' + error.message };
       }
     },
     [setUser],

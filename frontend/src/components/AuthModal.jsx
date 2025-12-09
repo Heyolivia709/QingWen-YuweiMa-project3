@@ -18,13 +18,18 @@ export default function AuthModal({ onClose, initialMode = 'login' }) {
       return;
     }
 
-    const action = isLogin ? login : register;
-    const result = await action(form.username, form.password);
+    try {
+      const action = isLogin ? login : register;
+      const result = await action(form.username, form.password);
 
-    if (result.success) {
-      onClose();
-    } else {
-      setError(result.message || 'Authentication failed');
+      if (result.success) {
+        onClose();
+      } else {
+        setError(result.message || 'Authentication failed');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Network error. Please check your connection.');
     }
   };
 

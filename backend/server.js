@@ -22,8 +22,14 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB →', MONGODB_URI))
-  .catch((err) => console.error('MongoDB connection error:', err));
+  .then(() => {
+    console.log('✅ Connected to MongoDB successfully');
+    console.log('Database:', MONGODB_URI.split('/').pop()?.split('?')[0] || 'default');
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB connection error:', err.message);
+    console.error('Connection string:', MONGODB_URI.replace(/\/\/[^:]+:[^@]+@/, '//***:***@'));
+  });
 
 // API Routes
 app.use('/api/auth', authRoutes);
